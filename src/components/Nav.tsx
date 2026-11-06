@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/logonew.svg";
 
-const Nav = () => {
+type NavProps = {
+  /** Hide the Sign In / Start creating actions (used on waitlist pages). */
+  hideActions?: boolean;
+};
+
+const Nav = ({ hideActions = false }: NavProps) => {
   const links = [
     { name: "Product", link: "/" },
     { name: "Workflows", link: "/" },
@@ -23,15 +28,19 @@ const Nav = () => {
         ))}
       </div>
 
-      <div className="flex items-center gap-4">
-        <h2 className="hidden sm:block">Sign In</h2>
-        <Link
-          to="/"
-          className="px-4 py-2 rounded-3xl btn-gradient text-black font-semibold text-sm sm:text-base whitespace-nowrap"
-        >
-          Start creating
-        </Link>
-      </div>
+      {hideActions ? (
+        <div aria-hidden className="hidden md:block w-[160px]" />
+      ) : (
+        <div className="flex items-center gap-4">
+          <h2 className="hidden sm:block">Sign In</h2>
+          <Link
+            to="/"
+            className="px-4 py-2 rounded-3xl btn-gradient text-black font-semibold text-sm sm:text-base whitespace-nowrap"
+          >
+            Start creating
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

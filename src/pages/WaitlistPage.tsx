@@ -12,14 +12,25 @@ const PROJECT_OPTIONS = [
   "Something else",
 ];
 
+const iconProps = {
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1.5,
+  strokeLinecap: "round" as const,
+  strokeLinejoin: "round" as const,
+  className: "h-5 w-5",
+};
+
 const perks = [
   {
     title: "Skip the queue.",
     description: "Early members get priority access ahead of the public launch.",
     icon: (
-      <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4">
-        <rect x="1.5" y="4.5" width="5" height="7" rx="1" stroke="currentColor" />
-        <rect x="9.5" y="4.5" width="5" height="7" rx="1" stroke="currentColor" />
+      <svg {...iconProps}>
+        <rect x="2" y="7" width="7" height="10" rx="1.5" />
+        <rect x="11" y="7" width="7" height="10" rx="1.5" />
+        <path d="M20.5 9.75 23 12l-2.5 2.25Z" fill="currentColor" />
       </svg>
     ),
   },
@@ -27,13 +38,10 @@ const perks = [
     title: "Founding pricing.",
     description: "Lock in early-access rates before plans go live.",
     icon: (
-      <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4">
-        <circle cx="8" cy="8" r="6.5" stroke="currentColor" />
-        <path
-          d="M9.6 6.3c-.2-.6-.8-.9-1.6-.9-1 0-1.6.5-1.6 1.1 0 .7.7 1 1.7 1.2 1.1.2 1.9.6 1.9 1.5 0 .7-.7 1.2-1.9 1.2-.9 0-1.6-.4-1.8-1M8 4.2v1.2M8 10.4v1.3"
-          stroke="currentColor"
-          strokeLinecap="round"
-        />
+      <svg {...iconProps}>
+        <circle cx="12" cy="12" r="10" />
+        <path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8" />
+        <path d="M12 18V6" />
       </svg>
     ),
   },
@@ -41,13 +49,11 @@ const perks = [
     title: "Shape the product.",
     description: "Early feedback goes straight to the team building it.",
     icon: (
-      <svg viewBox="0 0 16 16" fill="none" className="h-4 w-4">
-        <path
-          d="M8 1.8 13.8 5v6L8 14.2 2.2 11V5L8 1.8Z"
-          stroke="currentColor"
-          strokeLinejoin="round"
-        />
-        <path d="M2.4 5.2 8 8.3l5.6-3.1M8 8.3v5.7" stroke="currentColor" />
+      <svg {...iconProps}>
+        <path d="m7.5 4.27 9 5.15" />
+        <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z" />
+        <path d="m3.3 7 8.7 5 8.7-5" />
+        <path d="M12 22V12" />
       </svg>
     ),
   },
@@ -124,7 +130,7 @@ const WaitlistPage = () => {
   return (
     <div className="min-h-screen">
       <div className="px-6 py-12 sm:px-10 md:px-16 md:py-16 lg:px-24 lg:py-20 xl:px-32">
-        <Nav />
+        <Nav hideActions />
 
         <div className="mt-16 grid grid-cols-1 items-center gap-12 md:mt-24 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
           {/* Left: copy */}
@@ -154,7 +160,7 @@ const WaitlistPage = () => {
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
                   className="flex items-start gap-3 text-sm"
                 >
-                  <span className="mt-0.5 text-[#A3A6A0]">{perk.icon}</span>
+                  <span className="mt-px shrink-0 text-[#A3A6A0]">{perk.icon}</span>
                   <p className="text-[#A3A6A0]">
                     <span className="font-bold text-white">{perk.title}</span>{" "}
                     {perk.description}
